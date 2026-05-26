@@ -1,0 +1,131 @@
+{
+  "version": "v4",
+  "trained_at": "2026-05-13T11:18:46",
+  "dataset": {
+    "total": 589699,
+    "benign": 495613,
+    "phishing": 94086,
+    "vn_count": 35148,
+    "edu_vn_count": 2116,
+    "gov_vn_count": 717
+  },
+  "split": {
+    "train": 471759,
+    "test": 117940
+  },
+  "model": {
+    "type": "RandomForestClassifier",
+    "n_estimators": 200,
+    "max_depth": 20,
+    "min_samples_leaf": 5,
+    "class_weight": "balanced",
+    "sample_weight_rule": "vn=3, edu/gov.vn=5, other=1"
+  },
+  "overall": {
+    "count": 117940,
+    "n_benign": 99123,
+    "n_phishing": 18817,
+    "accuracy": 0.9298626420213668,
+    "precision": 0.7223839048462609,
+    "recall": 0.9101875963224744,
+    "f1": 0.8054837040869115,
+    "confusion_matrix": [
+      [
+        92541,
+        6582
+      ],
+      [
+        1690,
+        17127
+      ]
+    ],
+    "benign_false_positive_rate": 0.06640234859719742
+  },
+  "per_class": {
+    "benign": {
+      "precision": 0.9820653500440407,
+      "recall": 0.9335976514028026,
+      "f1-score": 0.9572183663125666,
+      "support": 99123.0
+    },
+    "phishing": {
+      "precision": 0.7223839048462609,
+      "recall": 0.9101875963224744,
+      "f1-score": 0.8054837040869115,
+      "support": 18817.0
+    },
+    "accuracy": 0.9298626420213668,
+    "macro avg": {
+      "precision": 0.8522246274451508,
+      "recall": 0.9218926238626385,
+      "f1-score": 0.8813510351997391,
+      "support": 117940.0
+    },
+    "weighted avg": {
+      "precision": 0.9406338954545322,
+      "recall": 0.9298626420213668,
+      "f1-score": 0.9330095216534166,
+      "support": 117940.0
+    }
+  },
+  "subset_vn": {
+    "count": 6982,
+    "n_benign": 6972,
+    "n_phishing": 10,
+    "accuracy": 0.9935548553423088,
+    "precision": 0.18181818181818182,
+    "recall": 1.0,
+    "f1": 0.3076923076923077,
+    "confusion_matrix": [
+      [
+        6927,
+        45
+      ],
+      [
+        0,
+        10
+      ]
+    ],
+    "benign_false_positive_rate": 0.006454388984509466
+  },
+  "subset_non_vn": {
+    "count": 110958,
+    "n_benign": 92151,
+    "n_phishing": 18807,
+    "accuracy": 0.9258548279529191,
+    "precision": 0.7236408218483131,
+    "recall": 0.9101398415483597,
+    "f1": 0.8062457313770284,
+    "confusion_matrix": [
+      [
+        85614,
+        6537
+      ],
+      [
+        1690,
+        17117
+      ]
+    ],
+    "benign_false_positive_rate": 0.07093791711430153
+  },
+  "subset_edu_gov_vn": {
+    "count": 568,
+    "n_benign": 567,
+    "n_phishing": 1,
+    "accuracy": 0.9894366197183099,
+    "precision": 0.14285714285714285,
+    "recall": 1.0,
+    "f1": 0.25,
+    "confusion_matrix": [
+      [
+        561,
+        6
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "benign_false_positive_rate": 0.010582010582010581
+  }
+}
