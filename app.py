@@ -212,6 +212,16 @@ def _is_whitelisted(url: str, whitelist: set[str]) -> tuple[bool, str]:
     return False, ""
 
 
+def _assign_tier(confidence: float) -> str:
+    """Map a model confidence score to a HIGH/MEDIUM/LOW tier (Stage 4).
+    HIGH >= 0.85, MEDIUM in [0.55, 0.85), LOW < 0.55."""
+    if confidence >= CONF_THRESHOLD_HIGH:
+        return "HIGH"
+    if confidence >= CONF_THRESHOLD_MEDIUM:
+        return "MEDIUM"
+    return "LOW"
+
+
 def predict_url(detector: MaliciousURLDetector, url: str,
                 whitelist: set[str]) -> dict:
     if not url or not url.strip():
@@ -232,12 +242,7 @@ def predict_url(detector: MaliciousURLDetector, url: str,
     result = detector.predict(url)
     conf = result["confidence"]
 
-    if conf >= CONF_THRESHOLD_HIGH:
-        level = "HIGH"
-    elif conf >= CONF_THRESHOLD_MEDIUM:
-        level = "MEDIUM"
-    else:
-        level = "LOW"
+    level = _assign_tier(conf)
 
     return {
         "label": result["label"],
